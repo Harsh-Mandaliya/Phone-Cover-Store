@@ -1,0 +1,21 @@
+node_modules
+.next
+.next-build
+*.tsbuildinfo
+
+# secrets — only the .env.example templates are committed
+.env
+.env.local
+api/.env
+web/.env.local
+
+# local data
+api/*.db*
+api/tests/test.db*
+api/uploads/*
+!api/uploads/.gitkeep
+api/mail-outbox
+
+api/prisma/*.db*
+*.db
+*.db-journal

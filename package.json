@@ -1,0 +1,13 @@
+{
+  "name": "all-is-well-store",
+  "private": true,
+  "description": "Phone accessories store: Next.js storefront + admin, Express API, Prisma (SQLite)",
+  "scripts": {
+    "setup": "npm install && npm --prefix api install && npm --prefix web install && npm --prefix api run db:setup",
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm --prefix api run dev\" \"npm --prefix web run dev\"",
+    "db:reset": "npm --prefix api run db:reset"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
