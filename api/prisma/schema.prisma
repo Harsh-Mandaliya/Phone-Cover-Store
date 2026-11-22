@@ -1,0 +1,201 @@
+// SQLite keeps local dev zero-install. To move to PostgreSQL later (Neon/Supabase),
+// change provider to "postgresql" and DATABASE_URL — the models stay the same.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  role         String    @default("CUSTOMER") // CUSTOMER | ADMIN
+  createdAt    DateTime  @default(now())
+  orders       Order[]
+  addresses    Address[]
+  reviews      Review[]
+}
+
+model Address {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName  String
+  phone     String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  pincode   String
+  isDefault Boolean @default(false)
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String
+  slug     String    @unique
+  tagline  String    @default("")
+  art      String    @default("case")
+  color    String    @default("#F15A24")
+  image    String    @default("") // banner photo for the Shop-by-Category grid
+  sort     Int       @default(0)
+  products Product[]
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  slug        String      @unique
+  sku         String      @unique
+  description String      @default("")
+  price       Int
+  mrp         Int
+  stock       Int         @default(0)
+  lowStockAt  Int         @default(5)
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  models      String      @default("[]") // JSON: compatible phone models, [] = universal
+  colors      String      @default("[]") // JSON: [{ name, hex }]
+  images      String      @default("[]") // JSON: uploaded image URLs
+  art         String      @default("case") // fallback illustration kind
+  pattern     String      @default("solid")
+  featured    Boolean     @default(false)
+  isNew       Boolean     @default(false)
+  trending    Boolean     @default(false)
+  status      String      @default("PUBLISHED") // PUBLISHED | DRAFT
+  rating      Float       @default(0)
+  reviewCount Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  reviews     Review[]
+  orderItems  OrderItem[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name      String
+  rating    Int
+  comment   String
+  approved  Boolean  @default(false) // guests need admin approval
+  verified  Boolean  @default(false) // reviewer bought this product
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id             String           @id @default(cuid())
+  number         String           @unique
+  userId         String?
+  user           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  customerName   String
+  email          String
+  phone          String
+  line1          String
+  line2          String?
+  city           String
+  state          String
+  pincode        String
+  subtotal       Int
+  shipping       Int
+  codFee         Int              @default(0)
+  discount       Int              @default(0)
+  total          Int
+  couponCode     String?
+  paymentMethod  String           @default("COD")
+  paymentStatus  String           @default("PENDING") // PENDING | PAID | FAILED | REFUNDED
+  gatewayOrderId   String?        @unique // e.g. Razorpay order_xxx, created by the server
+  gatewayPaymentId String?        @unique // unique: one payment can never pay two orders
+  status         String           @default("PLACED")
+  partnerId      String?
+  partner        DeliveryPartner? @relation(fields: [partnerId], references: [id], onDelete: SetNull)
+  trackingNumber String?
+  note           String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  items          OrderItem[]
+  events         OrderEvent[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  name      String
+  sku       String
+  model     String?
+  color     String?
+  colorHex  String   @default("#222222")
+  art       String   @default("case")
+  pattern   String   @default("solid")
+  image     String?
+  price     Int
+  qty       Int
+}
+
+model OrderEvent {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    String
+  note      String?
+  createdAt DateTime @default(now())
+}
+
+model DeliveryPartner {
+  id            String   @id @default(cuid())
+  name          String
+  contactPerson String?
+  phone         String?
+  trackingUrl   String   @default("") // use {tracking} as placeholder
+  codSupported  Boolean  @default(true)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  orders        Order[]
+}
+
+model Coupon {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  type        String    @default("PERCENT") // PERCENT | FLAT
+  value       Int
+  minOrder    Int       @default(0)
+  maxDiscount Int?
+  active      Boolean   @default(true)
+  expiresAt   DateTime?
+  usedCount   Int       @default(0)
+  usageLimit  Int? // total redemptions allowed, null = unlimited
+  createdAt   DateTime  @default(now())
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
