@@ -63,6 +63,89 @@ The whole project runs locally with free tools only. There are no paid services 
 - Admin role re-checked on every request; security headers on every response
 - 26 automated tests cover these rules
 
+## Screenshots
+
+### Storefront
+
+<p align="center">
+  <img src="docs/screenshots/01-home.jpg" alt="Home page" width="85%">
+</p>
+
+<table>
+  <tr>
+    <td align="center"><b>Shop & filters</b><br><img src="docs/screenshots/02-shop-all-products.jpg" alt="Shop" width="100%"></td>
+    <td align="center"><b>Product page</b><br><img src="docs/screenshots/04-product-page.jpg" alt="Product page" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Quick view</b><br><img src="docs/screenshots/05-quick-view.jpg" alt="Quick view" width="100%"></td>
+    <td align="center"><b>Cart drawer</b><br><img src="docs/screenshots/10-cart-drawer.jpg" alt="Cart drawer" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Cart</b><br><img src="docs/screenshots/11-cart-page.jpg" alt="Cart" width="100%"></td>
+    <td align="center"><b>Checkout</b><br><img src="docs/screenshots/12-checkout.jpg" alt="Checkout" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Order confirmation</b><br><img src="docs/screenshots/14-order-confirmation.jpg" alt="Order confirmation" width="100%"></td>
+    <td align="center"><b>Track order</b><br><img src="docs/screenshots/06-track-order.jpg" alt="Track order" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>My orders</b><br><img src="docs/screenshots/13-my-orders.jpg" alt="My orders" width="100%"></td>
+    <td align="center"><b>Contact & policies</b><br><img src="docs/screenshots/07-contact-and-policies.jpg" alt="Contact" width="100%"></td>
+  </tr>
+</table>
+
+### Admin panel
+
+<p align="center">
+  <img src="docs/screenshots/21-admin-dashboard.jpg" alt="Admin dashboard" width="85%">
+</p>
+
+<table>
+  <tr>
+    <td align="center"><b>Products & stock</b><br><img src="docs/screenshots/22-admin-products-stock.jpg" alt="Products" width="100%"></td>
+    <td align="center"><b>Product editor</b><br><img src="docs/screenshots/23-admin-product-editor.jpg" alt="Product editor" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Orders</b><br><img src="docs/screenshots/24-admin-orders.jpg" alt="Orders" width="100%"></td>
+    <td align="center"><b>Order detail & delivery</b><br><img src="docs/screenshots/25-admin-order-detail.jpg" alt="Order detail" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Categories</b><br><img src="docs/screenshots/26-admin-categories.jpg" alt="Categories" width="100%"></td>
+    <td align="center"><b>Delivery partners</b><br><img src="docs/screenshots/27-admin-delivery-partners.jpg" alt="Delivery partners" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Customers</b><br><img src="docs/screenshots/28-admin-customers.jpg" alt="Customers" width="100%"></td>
+    <td align="center"><b>Coupons</b><br><img src="docs/screenshots/29-admin-coupons.jpg" alt="Coupons" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Review moderation</b><br><img src="docs/screenshots/30-admin-reviews.jpg" alt="Reviews" width="100%"></td>
+    <td align="center"><b>Inbox</b><br><img src="docs/screenshots/31-admin-inbox.jpg" alt="Inbox" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Store settings</b><br><img src="docs/screenshots/32-admin-store-settings.jpg" alt="Settings" width="100%"></td>
+    <td align="center"><b>Admin sign in</b><br><img src="docs/screenshots/20-admin-sign-in.jpg" alt="Admin sign in" width="100%"></td>
+  </tr>
+</table>
+
+### Mobile
+
+<table>
+  <tr>
+    <td align="center"><b>Home</b><br><img src="docs/screenshots/40-mobile-home.jpg" alt="Mobile home" width="220"></td>
+    <td align="center"><b>Menu</b><br><img src="docs/screenshots/41-mobile-menu.jpg" alt="Mobile menu" width="220"></td>
+    <td align="center"><b>Shop</b><br><img src="docs/screenshots/42-mobile-shop.jpg" alt="Mobile shop" width="220"></td>
+    <td align="center"><b>Product</b><br><img src="docs/screenshots/43-mobile-product.jpg" alt="Mobile product" width="220"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Cart</b><br><img src="docs/screenshots/44-mobile-cart.jpg" alt="Mobile cart" width="220"></td>
+    <td align="center"><b>Checkout</b><br><img src="docs/screenshots/45-mobile-checkout.jpg" alt="Mobile checkout" width="220"></td>
+    <td align="center"><b>Admin dashboard</b><br><img src="docs/screenshots/46-mobile-admin-dashboard.jpg" alt="Mobile admin" width="220"></td>
+    <td></td>
+  </tr>
+</table>
+
+All screenshots are in [`docs/screenshots`](docs/screenshots).
+
 ## Getting started
 
 **Requirements:** Node.js 20 or newer.

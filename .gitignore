@@ -19,3 +19,6 @@ api/mail-outbox
 api/prisma/*.db*
 *.db
 *.db-journal
+
+# full-size screenshot originals (compressed copies live in docs/screenshots)
+/screenshots/
